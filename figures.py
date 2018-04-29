@@ -1,6 +1,6 @@
 from typing import Tuple, List
 import pygame
-from pygame import Color, Surface
+from pygame import Color, Surface, gfxdraw
 import abc
 
 
@@ -22,7 +22,7 @@ class Figure(abc.ABC):
 class Point(Figure):
 
     def draw(self, screen: Surface):
-        screen.set_at(self.position, self.color)
+        gfxdraw.pixel(screen, self.position[0], self.position[1], self.color)
 
 
 class Circle(Figure):
@@ -32,7 +32,8 @@ class Circle(Figure):
         self.radius = radius
 
     def draw(self, screen: Surface):
-        pygame.draw.circle(screen, self.color, self.position, self.radius)
+        gfxdraw.aacircle(screen, self.position[0], self.position[1], self.radius, self.color)
+        gfxdraw.filled_circle(screen, self.position[0], self.position[1], self.radius, self.color)
 
 
 class Rectangle(Figure):
@@ -59,5 +60,6 @@ class Polygon(Figure):
         self.points = points
 
     def draw(self, screen: Surface):
-        pygame.draw.polygon(screen, self.color, [(self.position[0] + p[0], self.position[1] + p[1]) for p in self.points])
+        gfxdraw.aapolygon(screen, [(self.position[0] + p[0], self.position[1] + p[1]) for p in self.points], self.color)
+        gfxdraw.filled_polygon(screen, [(self.position[0] + p[0], self.position[1] + p[1]) for p in self.points], self.color)
 
