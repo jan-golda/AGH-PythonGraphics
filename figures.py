@@ -1,7 +1,8 @@
 from typing import Tuple, List
+import abc
+
 import pygame
 from pygame import Color, Surface, gfxdraw
-import abc
 
 
 # define types

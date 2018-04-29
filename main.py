@@ -1,14 +1,15 @@
 from typing import Dict, List
-from figures import Figure, Point, Circle, Rectangle, Square, Polygon
-import pygame
-from pygame import Color, Surface
 import json
 import argparse
 import re
 
+import pygame
+from pygame import Color, Surface
+
+from figures import Figure, Point, Circle, Rectangle, Square, Polygon
+
 
 def draw_from_file(input_file: str, output_file: str = None):
-
     # parse data
     data = json.load(open(input_file, "r"))
 
@@ -19,7 +20,10 @@ def draw_from_file(input_file: str, output_file: str = None):
     figures = _parse_figures(data['Figures'], palette)
 
     # setup screen
-    screen = _setup_screen(data['Screen'], palette)
+    screen = __setup_screen(data['Screen'], palette)
+
+    # set screen title
+    pygame.display.set_caption("Visualization of: " + input_file)
 
     # draw figures
     for fig in figures:
@@ -39,7 +43,7 @@ def draw_from_file(input_file: str, output_file: str = None):
                 return
 
 
-def _setup_screen(options: dict, palette: Dict[str, Color]) -> Surface:
+def __setup_screen(options: dict, palette: Dict[str, Color]) -> Surface:
     pygame.init()
     screen = pygame.display.set_mode((options['width'], options['height']))
     screen.fill(_parse_color(options['bg_color'], palette))
@@ -93,7 +97,6 @@ def _parse_figures(figures: List[dict], palette: Dict[str, Color]) -> List[Figur
             result.append(Polygon(position, fig['points'], color))
 
     return result
-
 
 
 def _save_to_file(screen: Surface, output_file: str):
