@@ -45,7 +45,7 @@ class Rectangle(Figure):
         self.height = height
 
     def draw(self, screen: Surface):
-        pygame.draw.rect(screen, self.color, self.position + (self.width, self.height))
+        pygame.draw.rect(screen, self.color, (self.position[0] - self.width/2, self.position[1] - self.height/2, self.width, self.height))
 
 
 class Square(Rectangle):
