@@ -9,7 +9,9 @@
 > * koła (środek i promień)
 > 
 > Każda figura może mieć określony kolor w postaci słownej (z zadanej palety, np. red), trójki liczb dziesiętnych (np. (255, 0, 0) lub notacji HTML (#ff0000).
-> Przykładowy plik zawierający wszystkie dopuszczalne elementy: http://home.agh.edu.pl/~zkaleta/python/sample.json
+> 
+> Przykładowy plik zawierający wszystkie dopuszczalne elementy: [sample.json](../master/tests/sample.json)
+> 
 > Program ma przyjmować nazwę pliku wejściowego z linii komend. Jeżeli zostanie podana flaga -o (lub --output) to po niej ma być nazwa pliku, do którego grafikę należy zapisać. Jeśli flaga -o nie zostanie podana, to należy tylko wyświetlić na ekranie.
 > 
 > *~Zbigniew Kaleta, 2018*
